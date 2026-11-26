@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Progressive Party New Zealand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson:  #8B1A1A;
+    --dark-red: #5C0F0F;
+    --gold:     #C9910A;
+    --cream:    #F5EDD6;
+    --brown:    #2C1810;
+    --sun:      #E8A020;
+    --white:    #FFFFFF;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', serif;
+    color: var(--brown);
+    background: var(--cream);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--dark-red);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 60px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .nav-brand {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; list-style: none; gap: 1.8rem; }
+  .nav-links a {
+    color: var(--cream); font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark-red);
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center;
+    padding: 80px 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+
+  /* sun-ray background */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-conic-gradient(
+      from 0deg at 50% 60%,
+      rgba(201,145,10,0.18) 0deg 10deg,
+      rgba(139,26,26,0)   10deg 20deg
+    );
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    position: relative; z-index: 1;
+    width: min(540px, 92vw);
+    border: 4px solid var(--gold);
+    box-shadow: 0 0 60px rgba(0,0,0,0.6);
+    display: block;
+  }
+
+  .hero-slogan {
+    position: relative; z-index: 1;
+    margin-top: 2rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+  }
+
+  .hero-sub {
+    position: relative; z-index: 1;
+    margin-top: 1rem;
+    color: var(--cream); font-size: 1.05rem; text-align: center;
+    max-width: 46ch; opacity: 0.85;
+  }
+
+  .hero-cta {
+    position: relative; z-index: 1;
+    margin-top: 2rem;
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+
+  .btn-gold {
+    background: var(--gold); color: var(--brown);
+    padding: 0.8rem 2rem; border-radius: 2px;
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--sun); }
+
+  .btn-outline-cream {
+    border: 2px solid var(--cream); color: var(--cream);
+    padding: 0.8rem 2rem; border-radius: 2px;
+    font-family: 'Oswald', sans-serif; font-weight: 600;
+    font-size: 0.95rem; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline-cream:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── BANNER STRIP ── */
+  .banner {
+    background: var(--crimson);
+    padding: 1.4rem 2rem;
+    text-align: center;
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+  }
+  .banner p {
+    font-family: 'Oswald', sans-serif; font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--cream); letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .banner strong { color: var(--gold); }
+
+  /* ── SECTIONS ── */
+  .section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-dark { background: var(--brown); }
+  .section-cream { background: var(--cream); }
+  .section-mid { background: #3D2218; }
+
+  .section-eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.1; color: var(--cream);
+    margin-bottom: 1.2rem;
+  }
+  .section-title.dark { color: var(--brown); }
+  .section-body { font-size: 1rem; color: rgba(245,237,214,0.75); line-height: 1.75; }
+  .section-body.dark { color: #5a3a28; }
+
+  /* ── VISION GRID ── */
+  .vision-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center;
+  }
+  .pillar-list { list-style: none; margin-top: 1.6rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .pillar-list li { display: flex; gap: 0.7rem; font-size: 0.95rem; color: rgba(245,237,214,0.75); }
+  .pillar-list li::before {
+    content: '★'; color: var(--gold); font-size: 0.7rem;
+    flex-shrink: 0; margin-top: 0.42em;
+  }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .stat-cell {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(201,145,10,0.3);
+    padding: 1.6rem;
+  }
+  .stat-num {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: 2.2rem; color: var(--gold); display: block; line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .stat-label { font-size: 0.8rem; color: rgba(245,237,214,0.6); }
+  .stat-num-words { font-size: 1.65rem; letter-spacing: 0.035em; white-space: nowrap; }
+
+  /* ── POLICIES ── */
+  .policy-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--gold);
+  }
+  .policy-card {
+    background: var(--cream); padding: 2.2rem;
+  }
+  .policy-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+  .policy-title {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: 1.3rem; color: var(--dark-red);
+    margin-bottom: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .policy-points { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .policy-points li { display: flex; gap: 0.6rem; font-size: 0.9rem; color: #4a2810; line-height: 1.5; }
+  .policy-points li::before {
+    content: '▸'; color: var(--crimson);
+    flex-shrink: 0; margin-top: 0.1em;
+  }
+
+  /* ── HEALTH ── */
+  .section-health { background: var(--dark-red); }
+  .health-intro { max-width: 70ch; margin-bottom: 2rem; }
+  .health-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  }
+  .health-card {
+    padding: 2rem; border: 1px solid rgba(201,145,10,0.45);
+    background: rgba(245,237,214,0.07);
+  }
+  .health-icon { display: block; font-size: 2rem; margin-bottom: 1rem; }
+  .health-card-title {
+    color: var(--gold); font-family: 'Oswald', sans-serif;
+    font-size: 1.25rem; line-height: 1.2; text-transform: uppercase;
+    letter-spacing: 0.03em; margin-bottom: 0.8rem;
+  }
+  .health-card p { color: rgba(245,237,214,0.78); font-size: 0.92rem; line-height: 1.7; }
+
+  /* ── FINANCE ── */
+  .finance-grid { display: grid; grid-template-columns: 0.95fr 1.2fr; gap: 3.2rem; align-items: center; }
+  .funding-chart-wrap { width: 100%; max-width: 620px; margin: 0 auto; }
+  .funding-chart-heading {
+    margin-bottom: 0.25rem; color: var(--gold); text-align: center;
+    font-family: 'Oswald', sans-serif; font-size: 0.9rem;
+    font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase;
+  }
+  .funding-chart { display: block; width: 100%; height: auto; overflow: visible; }
+  .funding-slice { stroke: #3D2218; stroke-width: 2.5; }
+  .funding-percent {
+    fill: #FFFFFF; font-family: 'Oswald', sans-serif;
+    font-size: 20px; font-weight: 700; text-anchor: middle;
+    dominant-baseline: middle;
+  }
+  .funding-percent-small { font-size: 15px; }
+  .funding-label {
+    fill: var(--cream); font-family: 'Oswald', sans-serif;
+    font-size: 19px; font-weight: 600; letter-spacing: 0.01em;
+  }
+  .funding-chart-caption {
+    margin-top: -0.2rem; color: rgba(245,237,214,0.56);
+    font-size: 0.76rem; text-align: center; line-height: 1.5;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--gold);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .cta-section h2 {
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: clamp(1.9rem, 4vw, 3rem); color: var(--brown);
+    letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .cta-section p { color: rgba(44,24,16,0.75); font-size: 1rem; margin-bottom: 1.8rem; max-width: 44ch; margin-left: auto; margin-right: auto; }
+  .btn-dark {
+    background: var(--dark-red); color: var(--cream);
+    padding: 0.9rem 2.2rem; border-radius: 2px;
+    font-family: 'Oswald', sans-serif; font-weight: 700;
+    font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-dark:hover { background: var(--crimson); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brown); padding: 2.5rem 2rem;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.2rem;
+    border-top: 3px solid var(--gold);
+  }
+  .footer-brand { font-family: 'Oswald', sans-serif; font-weight: 700; color: var(--gold); font-size: 1rem; }
+  .footer-slogan { font-size: 0.8rem; color: rgba(245,237,214,0.45); font-style: italic; }
+  .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+  .footer-links a { color: rgba(245,237,214,0.45); font-size: 0.8rem; text-decoration: none; transition: color 0.2s; font-family: 'Oswald', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .health-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .vision-grid, .finance-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .policy-grid, .health-grid { grid-template-columns: 1fr; }
+    .funding-label { font-size: 23px; }
+    .funding-percent { font-size: 23px; }
+    .funding-percent-small { font-size: 18px; }
+    .section { padding: 3.5rem 1.25rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">The Progressive Party NZ</a>
+  <ul class="nav-links">
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#policies">Policies</a></li>
+    <li><a href="#health">Health</a></li>
+    <li><a href="#finance">Finance</a></li>
+    <li><a href="#join">Join Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img id="party-logo" class="hero-logo" alt="The Progressive Party New Zealand" />
+  <p class="hero-slogan">Be Greater. Together.</p>
+  <p class="hero-sub">A fair, stable, and successful future for every New Zealander — built on community, healthcare, education, and transport that works.</p>
+  <div class="hero-cta">
+    <a href="#policies" class="btn-gold">Our Policies</a>
+    <a href="#vision" class="btn-outline-cream">Our Vision</a>
+  </div>
+</section>
+
+<!-- BANNER -->
+<div class="banner">
+  <p>We focus on the <strong>people</strong> and <strong>community</strong> above all else.</p>
+</div>
+
+<!-- VISION -->
+<section class="section section-dark" id="vision">
+  <div class="section-inner">
+    <div class="vision-grid">
+      <div>
+        <p class="section-eyebrow">Who We Are</p>
+        <h2 class="section-title">A party built for every community in Aotearoa</h2>
+        <p class="section-body">The Progressive Party believes that every New Zealander — regardless of background, postcode, or income — deserves access to great schools, reliable healthcare, and a government that listens. We are here to make real, lasting change.</p>
+        <ul class="pillar-list">
+          <li>Prioritising healthcare, education, transport and defence</li>
+          <li>Closing the gap between wealthy and disadvantaged communities</li>
+          <li>Responsible, targeted tax reform that protects most households</li>
+          <li>Investing in what people actually need — not political point-scoring</li>
+        </ul>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Priority areas we'll transform in our first term</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num stat-num-words">NO TAX RISE</span>
+          <span class="stat-label">For households earning under $100,000</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">NZ-trained nurses &amp; doctors guaranteed public roles</span>
+        </div>
+        <div class="stat-cell">
+          <span class="stat-num">PRIORITY</span>
+          <span class="stat-label">The people always come first.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section class="section section-cream" id="policies">
+  <div class="section-inner">
+    <p class="section-eyebrow" style="color:var(--crimson)">Our Platform</p>
+    <h2 class="section-title dark" style="margin-bottom:2rem">What we will do when you give us your trust</h2>
+    <div class="policy-grid">
+      <div class="policy-card">
+        <span class="policy-icon">📚</span>
+        <h3 class="policy-title">Education</h3>
+        <ul class="policy-points">
+          <li>Introduce a single, consistent national assessment framework</li>
+          <li>Raise educational standards from early childhood through secondary school</li>
+          <li>Invest in teacher training and increase teacher numbers</li>
+          <li>Transition private schools to a low-fee public model — with fee waivers for low-income families</li>
+        </ul>
+      </div>
+      <div class="policy-card">
+        <span class="policy-icon">🚌</span>
+        <h3 class="policy-title">Transport</h3>
+        <ul class="policy-points">
+          <li>Significantly expand public transport infrastructure across NZ</li>
+          <li>Invest in reliable, affordable services that reduce private vehicle dependence</li>
+          <li>Better-connected communities mean happier, more productive New Zealanders</li>
+          <li>Improved transport access as a driver of economic participation</li>
+        </ul>
+      </div>
+      <div class="policy-card">
+        <span class="policy-icon">🎸</span>
+        <h3 class="policy-title">Sport &amp; Culture</h3>
+        <ul class="policy-points">
+          <li>Require all under-16s to participate in organised sport</li>
+          <li>Create publicly funded instrument hire schemes for schools and community groups</li>
+          <li>Develop dedicated event infrastructure — hosted events contribute back to NZ</li>
+          <li>Support the arts through access and participation, not just grants</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH -->
+<section class="section section-health" id="health">
+  <div class="section-inner">
+    <p class="section-eyebrow">Our Health Plan</p>
+    <h2 class="section-title">A healthier Aotearoa, with care that works</h2>
+    <p class="section-body health-intro">Healthcare is one of our main priorities. We will strengthen the public system by growing its workforce, making everyday food staples more affordable, and investing in research and better-run hospitals.</p>
+    <div class="health-grid">
+      <article class="health-card">
+        <span class="health-icon">🩺</span>
+        <h3 class="health-card-title">Grow the healthcare workforce</h3>
+        <p>Increase the number of jobs in New Zealand's healthcare system and guarantee a public-system role for doctors and nurses who graduate from medical school in New Zealand. A larger workforce will help reduce waiting times.</p>
+      </article>
+      <article class="health-card">
+        <span class="health-icon">🥦</span>
+        <h3 class="health-card-title">Make healthy food more affordable</h3>
+        <p>Subsidise basic foods such as bread, vegetables, meat and other staple goods to support healthier choices and help tackle obesity.</p>
+      </article>
+      <article class="health-card">
+        <span class="health-icon">🔬</span>
+        <h3 class="health-card-title">Invest in research and better hospitals</h3>
+        <p>Direct research funding towards cancer prevention and finding better ways to run hospitals efficiently.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE -->
+<section class="section section-mid" id="finance">
+  <div class="section-inner">
+    <div class="finance-grid">
+      <div>
+        <p class="section-eyebrow">Responsible Finance</p>
+        <h2 class="section-title">Funding a better future, carefully</h2>
+        <p class="section-body">Our spending commitments are real, so our funding plan has to be too. We will raise revenue from those best placed to contribute — while protecting the vast majority of New Zealand households.</p>
+        <p class="section-body" style="margin-top:1rem">Better public transport reduces household spending; a stronger healthcare workforce reduces long-term system costs. Progress pays for itself.</p>
+      </div>
+      <div class="funding-chart-wrap">
+        <p class="funding-chart-heading">Proposed Funding Priorities</p>
+        <svg class="funding-chart" viewBox="0 0 620 430" role="img" aria-labelledby="funding-chart-title funding-chart-desc">
+          <title id="funding-chart-title">Proposed funding priorities</title>
+          <desc id="funding-chart-desc">Illustrative allocation: Health 30 percent, Education 25 percent, Transport 25 percent, Defence 15 percent, and Other 5 percent.</desc>
+          <path class="funding-slice" d="M 310.00 220.00 L 310.00 75.00 A 145 145 0 0 1 447.90 264.81 Z" fill="#4FA7A1" />
+          <path class="funding-slice" d="M 310.00 220.00 L 447.90 264.81 A 145 145 0 0 1 265.19 357.90 Z" fill="#70C35E" />
+          <path class="funding-slice" d="M 310.00 220.00 L 265.19 357.90 A 145 145 0 0 1 172.10 175.19 Z" fill="#4F8FE8" />
+          <path class="funding-slice" d="M 310.00 220.00 L 172.10 175.19 A 145 145 0 0 1 265.19 82.10 Z" fill="#A9254E" />
+          <path class="funding-slice" d="M 310.00 220.00 L 265.19 82.10 A 145 145 0 0 1 310.00 75.00 Z" fill="#E6A02A" />
+          <text class="funding-percent" x="385.2" y="165.3">30%</text>
+          <text class="funding-percent" x="352.2" y="302.9">25%</text>
+          <text class="funding-percent" x="227.1" y="262.2">25%</text>
+          <text class="funding-percent" x="244.2" y="154.2">15%</text>
+          <text class="funding-percent funding-percent-small" x="291.9" y="105.4">5%</text>
+          <text class="funding-label" x="310" y="31" text-anchor="middle">Other</text>
+          <text class="funding-label" x="18" y="91">Defence</text>
+          <text class="funding-label" x="488" y="168">Health</text>
+          <text class="funding-label" x="430" y="402">Education</text>
+          <text class="funding-label" x="18" y="383">Transport</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="join">
+  <h2>Be Greater. Together.</h2>
+  <p>Join the thousands of New Zealanders who believe our communities, schools, and health system deserve better. Stand with us.</p>
+  <a href="#" class="btn-dark">Join The Progressive Party</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-brand">The Progressive Party NZ</p>
+    <p class="footer-slogan">Be Greater. Together.</p>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#vision">Vision</a></li>
+    <li><a href="#policies">Policies</a></li>
+    <li><a href="#health">Health</a></li>
+    <li><a href="#finance">Finance</a></li>
+    <li><a href="#join">Join</a></li>
+  </ul>
+  <p class="footer-slogan">Authorised by the Progressive Party of New Zealand.</p>
+</footer>
+
+<script>
+  // Embed the party poster image as base64
+  const img = document.getElementById('party-logo');
+  img.src = 'Screenshot 2026-11-26 201821.png'
+</script>
+</body>
+</html>
